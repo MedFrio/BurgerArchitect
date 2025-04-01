@@ -1,4 +1,5 @@
-﻿// Program.cs
+﻿using System;
+
 namespace BurgerArchitectApp;
 
 public class Program
@@ -17,7 +18,8 @@ public class Program
             Console.WriteLine("3. Quitter");
             Console.Write("\nVotre choix: ");
 
-            string choix = Console.ReadLine();
+            string? choix = Console.ReadLine();
+            choix ??= "";
 
             switch (choix)
             {
@@ -45,10 +47,12 @@ public class Program
         Console.WriteLine("2. Menu Standard");
         Console.WriteLine("3. Menu XL");
         Console.Write("\nChoisissez un menu: ");
-        
-        string choixMenu = Console.ReadLine();
+
+        string? choixMenu = Console.ReadLine();
+        choixMenu ??= "";
+
         MenuFactory factory;
-        
+
         switch (choixMenu)
         {
             case "1":
@@ -65,39 +69,41 @@ public class Program
                 factory = new MenuStandardFactory();
                 break;
         }
-        
+
         Menu menu = factory.CreerMenu();
         menu.AfficherMenu();
-        
+
         Console.WriteLine("\nCommande effectuée avec succès !\n");
     }
 
     private static void CreerBurgerPersonnalise()
     {
         Console.WriteLine("\n=== CRÉATION DE BURGER PERSONNALISÉ ===");
-        
+
         BurgerBuilder builder = new BurgerBuilder();
-        
+
         // Choix du pain
         Console.WriteLine("\nChoisissez votre pain:");
         Console.WriteLine("1. Pain blanc");
         Console.WriteLine("2. Pain complet");
         Console.Write("Votre choix: ");
-        string choixPain = Console.ReadLine();
-        
+        string? choixPain = Console.ReadLine();
+        choixPain ??= "";
+
         if (choixPain == "2")
             builder.AvecPainComplet();
         else
             builder.AvecPainBlanc();
-        
+
         // Choix de la viande
         Console.WriteLine("\nChoisissez votre viande:");
         Console.WriteLine("1. Bœuf");
         Console.WriteLine("2. Poulet");
         Console.WriteLine("3. Végétarien");
         Console.Write("Votre choix: ");
-        string choixViande = Console.ReadLine();
-        
+        string? choixViande = Console.ReadLine();
+        choixViande ??= "";
+
         switch (choixViande)
         {
             case "1":
@@ -113,7 +119,7 @@ public class Program
                 builder.AvecViandeBoeuf();
                 break;
         }
-        
+
         // Choix des accompagnements
         bool ajouterAccompagnements = true;
         while (ajouterAccompagnements)
@@ -126,9 +132,10 @@ public class Program
             Console.WriteLine("5. Sauce");
             Console.WriteLine("6. Terminer la personnalisation");
             Console.Write("Votre choix: ");
-            
-            string choixAccompagnement = Console.ReadLine();
-            
+
+            string? choixAccompagnement = Console.ReadLine();
+            choixAccompagnement ??= "";
+
             switch (choixAccompagnement)
             {
                 case "1":
@@ -148,8 +155,9 @@ public class Program
                     Console.WriteLine("Oignon ajouté !");
                     break;
                 case "5":
-                    Console.WriteLine("Choisissez votre sauce (ketchup, mayonnaise, barbecue): ");
-                    string typeSauce = Console.ReadLine();
+                    Console.Write("Choisissez votre sauce (ketchup, mayonnaise, barbecue): ");
+                    string? typeSauce = Console.ReadLine();
+                    typeSauce ??= "sauce inconnue";
                     builder.AjouterSauce(typeSauce);
                     Console.WriteLine($"Sauce {typeSauce} ajoutée !");
                     break;
@@ -161,7 +169,7 @@ public class Program
                     break;
             }
         }
-        
+
         // Création et affichage du burger personnalisé
         Burger burger = builder.Build();
         Console.WriteLine("\nVotre burger personnalisé est prêt !");

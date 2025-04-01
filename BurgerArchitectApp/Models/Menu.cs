@@ -1,12 +1,13 @@
-// Menu.cs
+using System;
+
 namespace BurgerArchitectApp;
 
 public class Menu
 {
-    public string Nom { get; set; }
-    public Burger Burger { get; set; }
-    public string Boisson { get; set; }
-    public string Frites { get; set; }
+    public string Nom { get; set; } = string.Empty;
+    public Burger Burger { get; set; } = new();
+    public string Boisson { get; set; } = string.Empty;
+    public string Frites { get; set; } = string.Empty;
 
     public void AfficherMenu()
     {

@@ -1,21 +1,21 @@
-// Burger.cs
+using System.Collections.Generic;
+using System;
+
 namespace BurgerArchitectApp;
 
 public class Burger
 {
-    // Propriétés du burger
-    public string TypePain { get; set; }
-    public string TypeViande { get; set; }
+    public string TypePain { get; set; } = string.Empty;
+    public string TypeViande { get; set; } = string.Empty;
     public List<string> Accompagnements { get; set; } = new List<string>();
 
-    // Méthode pour afficher les détails du burger
     public void AfficherDetails()
     {
         Console.WriteLine("\n=== DÉTAILS DU BURGER ===");
         Console.WriteLine($"Pain: {TypePain}");
         Console.WriteLine($"Viande: {TypeViande}");
         Console.WriteLine("Accompagnements:");
-        
+
         if (Accompagnements.Count > 0)
         {
             foreach (var accompagnement in Accompagnements)
@@ -27,7 +27,7 @@ public class Burger
         {
             Console.WriteLine("- Aucun accompagnement");
         }
-        
+
         Console.WriteLine("=======================\n");
     }
 }
