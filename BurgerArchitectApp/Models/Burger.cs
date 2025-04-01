@@ -1,18 +1,33 @@
-using System.Collections.Generic;
+// Burger.cs
+namespace BurgerArchitectApp;
 
-namespace BurgerArchitectApp.Models
+public class Burger
 {
-    public class Burger
+    // Propriétés du burger
+    public string TypePain { get; set; }
+    public string TypeViande { get; set; }
+    public List<string> Accompagnements { get; set; } = new List<string>();
+
+    // Méthode pour afficher les détails du burger
+    public void AfficherDetails()
     {
-        public string? Pain { get; set; }
-        public string? Viande { get; set; }
-
-        public List<string> Accompagnements { get; set; } = new();
-
-        public override string ToString()
+        Console.WriteLine("\n=== DÉTAILS DU BURGER ===");
+        Console.WriteLine($"Pain: {TypePain}");
+        Console.WriteLine($"Viande: {TypeViande}");
+        Console.WriteLine("Accompagnements:");
+        
+        if (Accompagnements.Count > 0)
         {
-            var acc = Accompagnements.Count > 0 ? string.Join(", ", Accompagnements) : "Aucun";
-            return $"Burger avec pain: {Pain}, viande: {Viande}, accompagnements: {acc}";
+            foreach (var accompagnement in Accompagnements)
+            {
+                Console.WriteLine($"- {accompagnement}");
+            }
         }
+        else
+        {
+            Console.WriteLine("- Aucun accompagnement");
+        }
+        
+        Console.WriteLine("=======================\n");
     }
 }
